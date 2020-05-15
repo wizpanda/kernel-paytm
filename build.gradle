@@ -1,0 +1,76 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "https://repo.grails.org/grails/core" }
+    }
+    dependencies {
+        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
+    }
+}
+
+version "0.0.1"
+group "com.wizpanda.plugins"
+
+apply plugin: "idea"
+apply plugin: "org.grails.grails-plugin"
+apply plugin: "org.grails.grails-plugin-publish"
+apply plugin: "org.grails.grails-gsp"
+
+repositories {
+    mavenLocal()
+    maven { url "https://repo.grails.org/grails/core" }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.grails:grails-bom:$grailsVersion"
+    }
+    applyMavenExclusions false
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-logging"
+    compile "org.springframework.boot:spring-boot-autoconfigure"
+    compile "org.grails:grails-core"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "org.springframework.boot:spring-boot-starter-tomcat"
+    compile "org.grails:grails-dependencies"
+    compile "org.grails:grails-web-boot"
+    compile "org.codehaus.groovy.modules.http-builder:http-builder:0.7.1"
+
+    profile "org.grails.profiles:web-plugin"
+
+    provided "org.grails:grails-plugin-services"
+    provided "org.grails:grails-plugin-domain-class"
+
+    testCompile "org.grails:grails-plugin-testing"
+    testCompile "org.grails.plugins:geb"
+    testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
+    testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
+
+    // payTm library to generate checksum and other stuffs
+    compile fileTree(dir: "./lib", include: ["*.jar"])
+}
+
+bootRun {
+    jvmArgs = ["-Dspring.output.ansi.enabled=always"]
+}
+
+// Enable if you wish to package this plugin as a standalone application
+bootRepackage.enabled = false
+
+grailsPublish {
+    githubSlug = "wizpanda/kernel-paytm"
+    userOrg = "wizpanda"
+    repo = "grails-plugins"
+    license {
+        name = "Apache-2.0"
+    }
+    title = "Kernel Paytm"
+    desc = "A Grails plugin to provide core functionality and utility classes for Paytm Payment Gateway integration"
+    developers = [sagrawal31: "Shashank Agrawal"]
+}
+
+jar {
+    exclude "com/wizpanda/UrlMappings**"
+}
