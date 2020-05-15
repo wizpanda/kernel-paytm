@@ -1,18 +1,18 @@
 package com.wizpanda.paytm
 
-import groovy.transform.CompileStatic
+import grails.compiler.GrailsCompileStatic
 
 /**
  * Common library class for payTm payment integration gsp page
  *
  * @author Viplav Soni
  */
-@CompileStatic
-class PaymentTagLib {
+@GrailsCompileStatic
+class PaytmTagLib {
 
-    static namespace = "kernel"
+    static namespace = "kernelPaytm"
 
-    def paytmForm = { Map<String, Object> attrs, body ->
+    def paymentForm = { Map<String, Object> attrs, body ->
 
         PaytmFormFields formFields = attrs.formFields as PaytmFormFields
 

@@ -5,12 +5,9 @@ import groovy.transform.CompileStatic
 @CompileStatic
 enum PaytmTransactionStatus {
 
-    CREDIT_CARD((Byte) 1, "CC"),
-    DEBIT_CARD((Byte) 2, "DC"),
-    NET_BANKING((Byte) 3, "NB"),
-    PAYTM_WALLET((Byte) 4, "PPI"),
-    PAYTM_POSTPAID((Byte) 5, "PAYTM_DIGITAL_CREDIT"),
-    UPI((Byte) 6, "UPI"),
+    SUCCESS((Byte) 1, "TXN_SUCCESS"),
+    PENDING((Byte) 2, "PENDING"),
+    FAILED((Byte) 3, "TXN_FAILURE")
 
     final Byte id
     final String paytmMapping
