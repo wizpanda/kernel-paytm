@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.0.2, 0.0.3
+## v0.0.2, 0.0.3, 0.0.4
 
 1. Fixed `PaytmTransactionStatus` enum.
 2. Renamed the Paytm taglib.
