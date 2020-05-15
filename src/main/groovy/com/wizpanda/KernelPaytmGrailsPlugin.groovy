@@ -10,7 +10,7 @@ class KernelPaytmGrailsPlugin extends Plugin {
     def profiles = ['web']
 
     def pluginExcludes = [
-            '**/com/wizpanda/UrlMappings*/**'
+            '**/com/wizpanda/kernel/paytm/UrlMappings*/**'
     ]
 
     String title = "Kernel Paytm Grails Plugin"

@@ -1,4 +1,4 @@
-package com.wizpanda
+package com.wizpanda.kernel.paytm
 
 class UrlMappings {
 

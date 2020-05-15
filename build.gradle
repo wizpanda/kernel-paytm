@@ -72,5 +72,5 @@ grailsPublish {
 }
 
 jar {
-    exclude "com/wizpanda/UrlMappings**"
+    exclude "com/wizpanda/kernel/paytm/UrlMappings**"
 }
