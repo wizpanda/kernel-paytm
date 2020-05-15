@@ -3,7 +3,6 @@ package com.wizpanda.paytm
 import grails.compiler.GrailsCompileStatic
 import grails.validation.Validateable
 import grails.web.databinding.DataBindingUtils
-import org.springframework.transaction.TransactionStatus
 
 /**
  * An abstract class which can be extended by any Grails domain class to hold basic data returned from Paytm.
@@ -25,6 +24,7 @@ abstract class AbstractPaytmTransaction implements Validateable {
     }
 
     static mapping = {
+        status enumType: "identity"
         paymentMode enumType: "identity"
         transactionType enumType: "identity"
         amount updateable: false
@@ -46,13 +46,21 @@ abstract class AbstractPaytmTransaction implements Validateable {
     String bankTransactionID
 
     PaytmPaymentMode paymentMode
-    TransactionStatus status
+    PaytmTransactionStatus status
     PaytmTransactionType transactionType
 
     Date transactionDate
 
     Date dateCreated
     Date lastUpdated
+
+    boolean isFailed() {
+        this.status == PaytmTransactionStatus.FAILED
+    }
+
+    boolean isSucceed() {
+        this.status == PaytmTransactionStatus.SUCCESS
+    }
 
     @GrailsCompileStatic
     void bindFromPaytmParams(TreeMap<String, String> paytmParams) {
